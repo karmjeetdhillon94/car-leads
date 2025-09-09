@@ -3,137 +3,450 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dream Car Access — Get Approved Today</title>
-  <meta name="description" content="Fast approvals, flexible payments, and a wide selection. Apply in minutes with Dream Car Access." />
+  <title>Dream Car Access — Get Approved</title>
+  <meta name="description" content="Dream Car Access — Fast approvals, $0 down options, flexible payments. Apply in minutes." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --brand:#0ea5e9;
-      --brand-dark:#0369a1;
-      --ink:#0f172a;
-      --muted:#94a3b8;
-      --bg:#0b1020;
-      --card:rgba(255,255,255,0.08);
-      --glass:rgba(255,255,255,0.12);
-      --line:rgba(255,255,255,0.14);
-      --ok:#22c55e;
+      --brand:#0ea5e9; --brand-dark:#0369a1; --ink:#0f172a; --muted:#94a3b8;
+      --bg:#0b1020; --line:rgba(255,255,255,0.14); --ok:#22c55e; --warn:#f59e0b; --err:#ef4444;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:#f8fafc; background:radial-gradient(1200px 600px at 10% 10%, #10203a 0%, #0b1020 45%, #070b16 100%);
+      color:#f8fafc;
+      background: radial-gradient(1200px 600px at 10% 10%, #10203a 0%, #0b1020 45%, #070b16 100%);
       overflow-x:hidden;
     }
-    a{color:var(--brand)}
+    a{color:#7dd3fc}
     .wrap{width:min(1100px,92%); margin:0 auto}
-    .hero{position:relative; min-height:72vh; display:grid; place-items:center; padding:64px 20px 32px; border-bottom:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(11,16,32,0.92)), url('https://images.unsplash.com/photo-1542282088-fe8426682b8f?q=80&w=2000&auto=format&fit=crop');
-      background-size:cover; background-position:center;}
-    .brand-badge{display:inline-flex; gap:10px; align-items:center; padding:8px 14px; border-radius:999px; background:linear-gradient(90deg, var(--brand), var(--brand-dark)); box-shadow:0 8px 24px rgba(14,165,233,.35); font-weight:800}
+
+    /* HERO */
+    .hero{
+      position:relative; min-height:64vh; display:grid; place-items:center; padding:64px 20px 32px;
+      border-bottom:1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.40), rgba(11,16,32,0.94)),
+        url('https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=2000&auto=format&fit=crop');
+      background-size:cover; background-position:center;
+      text-align:center;
+    }
+    .brand-badge{display:inline-flex; gap:10px; align-items:center; padding:8px 14px; border-radius:999px;
+      background:linear-gradient(90deg, var(--brand), var(--brand-dark)); box-shadow:0 8px 24px rgba(14,165,233,.35); font-weight:800}
     h1{font-size:clamp(32px,4vw,56px); line-height:1.05; margin:18px 0 12px; text-shadow:0 6px 30px rgba(0,0,0,.45)}
-    .lead{font-size:clamp(16px,2.1vw,20px); color:#e2e8f0; max-width:820px}
-    .ribbons{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
-    .chip{padding:9px 12px; border-radius:10px; background:var(--card); backdrop-filter: blur(6px); border:1px solid var(--line); font-weight:600}
-    .grid{display:grid; grid-template-columns:1.15fr .95fr; gap:28px; margin-top:-80px}
+    .lead{font-size:clamp(16px,2.1vw,20px); color:#e2e8f0; max-width:820px; margin:0 auto}
+    .ribbons{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; justify-content:center}
+    .chip{padding:9px 12px; border-radius:10px; background:rgba(255,255,255,0.08); backdrop-filter: blur(6px); border:1px solid var(--line); font-weight:600}
+
+    /* WIZARD GRID */
+    .grid{display:grid; grid-template-columns:1.1fr .9fr; gap:28px; margin-top:-80px}
     @media(max-width:980px){.grid{grid-template-columns:1fr; margin-top:20px}}
+
+    /* CARD */
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.06)); border:1px solid var(--line);
       border-radius:18px; padding:20px; box-shadow:0 10px 34px rgba(0,0,0,0.35)}
-    .card h2{margin:0 0 10px; font-size:26px}
+    .card h2{margin:0 0 6px; font-size:24px}
     .sub{color:var(--muted); margin:0 0 16px}
-    .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    @media(max-width:680px){.row{grid-template-columns:1fr}}
+
+    /* Inputs */
     label{font-size:13px; color:#cbd5e1; margin-bottom:6px; display:block}
-    input, select, textarea{width:100%; padding:12px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,0.06); color:#fff;}
+    input, select, textarea{width:100%; padding:12px; border-radius:12px; border:1px solid var(--line);
+      background:rgba(255,255,255,0.06); color:#fff; outline:none; transition:.2s border-color, .2s background;}
     input:focus, select:focus, textarea:focus{border-color:var(--brand); background:rgba(255,255,255,0.1)}
     textarea{min-height:110px; resize:vertical}
-    .cta{display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:6px}
-    .btn{border:none; cursor:pointer; padding:13px 18px; border-radius:12px; font-weight:800; letter-spacing:.2px;
-      background:linear-gradient(90deg, var(--brand), var(--brand-dark)); color:#fff; box-shadow:0 10px 24px rgba(14,165,233,.35); text-align:center; text-decoration:none}
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    @media(max-width:680px){.row{grid-template-columns:1fr}}
+
+    /* Wizard */
+    .steps{display:flex; gap:8px; margin:8px 0 16px; flex-wrap:wrap}
+    .step-pill{padding:6px 10px; border-radius:999px; border:1px solid var(--line); font-size:12px; opacity:.7}
+    .step-pill.active{background:linear-gradient(90deg, var(--brand), var(--brand-dark)); opacity:1}
+    .hidden{display:none !important}
+    .controls{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
+    .btn{border:none; cursor:pointer; padding:12px 16px; border-radius:12px; font-weight:800; letter-spacing:.2px;
+      background:linear-gradient(90deg, var(--brand), var(--brand-dark)); color:#fff; box-shadow:0 10px 24px rgba(14,165,233,.35);
+      text-decoration:none; text-align:center}
+    .btn.outline{background:transparent; border:1px solid var(--line)}
     .note{font-size:12px; color:#cbd5e1}
     .ok{color:var(--ok); font-weight:700}
-    .showcase{position:relative; overflow:hidden}
-    .bg-lines{position:absolute; inset:-40%; background:radial-gradient(600px 220px at 10% 10%, rgba(14,165,233,0.18), transparent), radial-gradient(540px 220px at 90% 20%, rgba(34,197,94,0.15), transparent), radial-gradient(620px 220px at 50% 90%, rgba(245,158,11,0.14), transparent); filter:blur(28px); pointer-events:none}
-    .gallery{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px}
+    .error{color:var(--err); font-size:13px; margin-top:6px}
+
+    /* Gallery / Trust */
+    .gallery{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:8px}
     .shot{position:relative; min-height:180px; border-radius:16px; overflow:hidden; border:1px solid var(--line)}
-    .shot:before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.45))}
+    .shot:before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.45))}
     .shot--a{background:url('https://images.unsplash.com/photo-1549924231-f129b911e442?q=80&w=1400&auto=format&fit=crop') center/cover}
-    .shot--b{background:url('https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1400&auto=format&fit=crop') center/cover}
-    .shot--c{background:url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1400&auto=format&fit=crop') center/cover}
-    footer{padding:28px 0 56px; color:#cbd5e1; text-align:center}
+    .shot--b{background:url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1400&auto=format&fit=crop') center/cover}
+    .shot--c{background:url('https://images.unsplash.com/photo-1542282088-fe8426682b8f?q=80&w=1400&auto=format&fit=crop') center/cover}
+
+    /* Footer + Floating Contact */
+    footer{padding:28px 0 64px; color:#cbd5e1; text-align:center}
     .small{font-size:12px; color:#94a3b8}
+    .float-contact{position:fixed; right:14px; bottom:14px; display:flex; gap:8px; z-index:50}
+    .fab{display:inline-flex; align-items:center; gap:8px; padding:12px 14px; border-radius:999px; text-decoration:none; color:#fff;
+      box-shadow:0 10px 24px rgba(0,0,0,.35)}
+    .fab.wa{background:linear-gradient(90deg, #22c55e, #16a34a)}
+    .fab.call{background:linear-gradient(90deg, #f59e0b, #d97706)}
   </style>
 </head>
 <body>
   <header class="hero">
-    <div class="wrap" style="text-align:center">
+    <div class="wrap">
       <div class="brand-badge">🚗 D R E A M  C A R  A C C E S S</div>
       <h1>Keys in Days — <span style="color:#7dd3fc">Fast, Friendly</span> Approvals</h1>
-      <p class="lead">$0 down options • Low bi‑weekly payments • Trade‑ins welcome. Tell us what you want — we’ll match you with the right vehicle and financing fast.</p>
+      <p class="lead">$0 down options • Low bi‑weekly payments • Trade‑ins welcome. Tell us what you want — we’ll match you quickly.</p>
       <div class="ribbons">
         <div class="chip">✅ Credit Approved</div>
-        <div class="chip">💬 WhatsApp / Phone / Email</div>
         <div class="chip">🧾 Carfax & Inspection Ready</div>
         <div class="chip">🚚 Province‑wide Delivery</div>
       </div>
     </div>
   </header>
+
   <main class="wrap" style="padding: 0 0 46px">
     <section class="grid">
+      <!-- Wizard Form -->
       <div class="card">
-        <h2>Quick Application</h2>
-        <p class="sub">Fill this out in under 60 seconds. We’ll reach out right away.</p>
+        <h2>Tell Us What You Need</h2>
+        <p class="sub">Answer a few quick questions. Takes about a minute.</p>
+
+        <div class="steps" id="stepPills">
+          <div class="step-pill active">1. Contact</div>
+          <div class="step-pill">2. Car</div>
+          <div class="step-pill">3. Budget</div>
+          <div class="step-pill">4. Credit & Work</div>
+          <div class="step-pill">5. Timing & Location</div>
+          <div class="step-pill">6. Review</div>
+        </div>
+
         <form id="leadForm" novalidate>
-          <div class="row"><div><label>Full Name</label><input name="Name" required /></div><div><label>Phone</label><input name="Phone" required /></div></div>
-          <div class="row"><div><label>Email</label><input type="email" name="Email" required /></div><div><label>Vehicle Interested In</label><input name="Vehicle" /></div></div>
-          <div class="row"><div><label>Budget (bi‑weekly)</label><input name="Budget" /></div><div><label>Down Payment</label><input name="DownPayment" /></div></div>
-          <div class="row"><div><label>Employment Status</label><select name="Employment"><option value="">Select…</option><option>Full‑time</option><option>Part‑time</option><option>Self‑employed</option><option>Student</option><option>Other</option></select></div><div><label>Residence Type</label><select name="Residence"><option value="">Select…</option><option>Own</option><option>Rent</option><option>With Family</option></select></div></div>
-          <div><label>Anything else?</label><textarea name="Message"></textarea></div>
-          <div style="margin:10px 0 0"><label class="note"><input type="checkbox" id="consent" required /> By submitting this form, I confirm the information provided is accurate and I authorize <strong>Dream Car Access</strong> and its lending partners to contact me by phone, text, or email. I also give consent to obtain and review my credit report for the purposes of arranging vehicle financing.</label></div>
-          <div class="cta">
-            <button class="btn" type="submit">Get Pre‑Approved</button>
-            <a class="btn" style="background:linear-gradient(90deg, #22c55e, #16a34a)" href="https://wa.me/16043468148?text=Hi%20Dream%20Car%20Access%2C%20I'm%20interested%20in%20a%20car%20and%20just%20filled%20the%20form." target="_blank">WhatsApp</a>
-            <a class="btn" style="background:linear-gradient(90deg, #f59e0b, #d97706)" href="tel:+16043468148">Call</a>
-            <span class="note"><span class="ok">No obligations.</span> Quick response.</span>
+          <!-- Step 1: Contact -->
+          <div class="step" data-step="1">
+            <div class="row">
+              <div>
+                <label for="Name">Full Name *</label>
+                <input id="Name" name="Name" placeholder="e.g., Karam Dhillon" required />
+              </div>
+              <div>
+                <label for="Phone">Phone *</label>
+                <input id="Phone" name="Phone" placeholder="604‑346‑8148" required />
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                <label for="Email">Email *</label>
+                <input id="Email" name="Email" type="email" placeholder="you@example.com" required />
+              </div>
+              <div>
+                <label for="PreferredContact">Preferred Contact</label>
+                <select id="PreferredContact" name="PreferredContact">
+                  <option value="">Select…</option>
+                  <option>WhatsApp</option>
+                  <option>Phone</option>
+                  <option>Email</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <p id="status" class="note" style="margin-top:10px"></p>
+
+          <!-- Step 2: Car -->
+          <div class="step hidden" data-step="2">
+            <div class="row">
+              <div>
+                <label for="VehicleType">Vehicle Type *</label>
+                <select id="VehicleType" name="VehicleType" required>
+                  <option value="">Select…</option>
+                  <option>Sedan</option>
+                  <option>SUV</option>
+                  <option>Truck</option>
+                  <option>Coupe</option>
+                  <option>Hatchback</option>
+                  <option>Van</option>
+                  <option>Electric / Hybrid</option>
+                </select>
+              </div>
+              <div>
+                <label for="MakeModel">Make / Model (if known)</label>
+                <input id="MakeModel" name="MakeModel" placeholder="e.g., Toyota Corolla / BMW 3 Series" />
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                <label for="YearRange">Year Range</label>
+                <select id="YearRange" name="YearRange">
+                  <option value="">Any</option>
+                  <option>2016–2018</option>
+                  <option>2019–2021</option>
+                  <option>2022–2023</option>
+                  <option>2024–2025</option>
+                </select>
+              </div>
+              <div>
+                <label for="MustHaves">Must‑Have Features</label>
+                <input id="MustHaves" name="MustHaves" placeholder="AWD, sunroof, leather, CarPlay…" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Budget -->
+          <div class="step hidden" data-step="3">
+            <div class="row">
+              <div>
+                <label for="PaymentPlan">Payment Preference *</label>
+                <select id="PaymentPlan" name="PaymentPlan" required>
+                  <option value="">Select…</option>
+                  <option>Bi‑weekly</option>
+                  <option>Monthly</option>
+                  <option>Cash</option>
+                </select>
+              </div>
+              <div>
+                <label for="Budget">Target Payment *</label>
+                <input id="Budget" name="Budget" placeholder="$250" required />
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                <label for="DownPayment">Down Payment</label>
+                <input id="DownPayment" name="DownPayment" placeholder="$0" />
+              </div>
+              <div>
+                <label for="TradeIn">Trade‑in Vehicle</label>
+                <input id="TradeIn" name="TradeIn" placeholder="Year/Make/Model (if any)" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Credit & Work -->
+          <div class="step hidden" data-step="4">
+            <div class="row">
+              <div>
+                <label for="Credit">Credit Score Range *</label>
+                <select id="Credit" name="Credit" required>
+                  <option value="">Select…</option>
+                  <option>Excellent (750+)</option>
+                  <option>Good (700–749)</option>
+                  <option>Fair (650–699)</option>
+                  <option>Building (600–649)</option>
+                  <option>Challenged (&lt;600)</option>
+                  <option>Prefer not to say</option>
+                </select>
+              </div>
+              <div>
+                <label for="Employment">Employment Status *</label>
+                <select id="Employment" name="Employment" required>
+                  <option value="">Select…</option>
+                  <option>Full‑time</option>
+                  <option>Part‑time</option>
+                  <option>Self‑employed</option>
+                  <option>Student</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="MonthlyIncome">Approx. Monthly Income</label>
+              <input id="MonthlyIncome" name="MonthlyIncome" placeholder="$4,000" />
+            </div>
+          </div>
+
+          <!-- Step 5: Timing & Location -->
+          <div class="step hidden" data-step="5">
+            <div class="row">
+              <div>
+                <label for="PurchaseTimeline">When are you looking to buy? *</label>
+                <select id="PurchaseTimeline" name="PurchaseTimeline" required>
+                  <option value="">Select…</option>
+                  <option>ASAP (this week)</option>
+                  <option>1–2 weeks</option>
+                  <option>3–4 weeks</option>
+                  <option>Next 1–3 months</option>
+                </select>
+              </div>
+              <div>
+                <label for="Location">City / Province *</label>
+                <input id="Location" name="Location" placeholder="e.g., Surrey, BC" required />
+              </div>
+            </div>
+            <div>
+              <label for="Message">Anything else?</label>
+              <textarea id="Message" name="Message" placeholder="Tell us about preferences or questions"></textarea>
+            </div>
+          </div>
+
+          <!-- Step 6: Review & Consent -->
+          <div class="step hidden" data-step="6">
+            <div class="note" id="reviewBox">Please review your answers below.</div>
+            <div style="margin:12px 0 0">
+              <label class="note">
+                <input type="checkbox" id="consent" required />
+                <span>By submitting, I confirm my info is accurate and I authorize <strong>Dream Car Access</strong> and its lending partners to contact me by phone, text, or email. I also give consent to obtain and review my credit report for the purposes of arranging vehicle financing.</span>
+              </label>
+            </div>
+          </div>
+
+          <div id="formError" class="error"></div>
+          <div id="status" class="note" style="margin-top:8px"></div>
+
+          <div class="controls">
+            <button type="button" class="btn outline" id="backBtn">Back</button>
+            <button type="button" class="btn" id="nextBtn">Next</button>
+            <button type="submit" class="btn hidden" id="submitBtn">Submit</button>
+
+            <a class="btn" style="background:linear-gradient(90deg, #22c55e, #16a34a)" href="https://wa.me/16043468148?text=Hi%20Dream%20Car%20Access%2C%20I%27m%20interested%20in%20a%20car." target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn" style="background:linear-gradient(90deg, #f59e0b, #d97706)" href="tel:+16043468148">Call 604‑346‑8148</a>
+          </div>
         </form>
       </div>
+
+      <!-- TRUST / Gallery -->
+      <aside class="card">
+        <h2 style="margin-top:0">Why Dream Car Access?</h2>
+        <ul style="margin:0 0 16px 18px; color:#e2e8f0">
+          <li>Large lender network to match your situation.</li>
+          <li>Transparent offers with no hidden fees.</li>
+          <li>Professionally inspected vehicles with Carfax available.</li>
+          <li>Trade‑in and delivery options to make it easy.</li>
+        </ul>
+        <div class="gallery">
+          <div class="shot shot--a"></div>
+          <div class="shot shot--b"></div>
+          <div class="shot shot--c"></div>
+        </div>
+      </aside>
     </section>
   </main>
-  <footer><div class="wrap"><p class="small">© <span id="y"></span> Dream Car Access. All rights reserved. Privacy‑first lead handling.</p></div></footer>
+
+  <footer>
+    <div class="wrap">
+      <p class="small">© <span id="y"></span> Dream Car Access. Privacy‑first lead handling.</p>
+    </div>
+  </footer>
+
+  <div class="float-contact">
+    <a class="fab wa" href="https://wa.me/16043468148?text=Hi%20Dream%20Car%20Access%2C%20I%27m%20interested%20in%20a%20car." target="_blank" rel="noopener">💬 WhatsApp</a>
+    <a class="fab call" href="tel:+16043468148">📞 Call 604‑346‑8148</a>
+  </div>
+
   <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycby1t8C9nC0OhWt-GPJXuXYdl_rcYTRgdOD7NCD8Ia_KPhjcdhvPwGHNv5TGzRG1S2FFhA/exec";
     const form = document.getElementById('leadForm');
+    const pills = document.getElementById('stepPills').children;
+    const steps = Array.from(document.querySelectorAll('.step'));
+    const backBtn = document.getElementById('backBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
     const statusEl = document.getElementById('status');
+    const errorEl = document.getElementById('formError');
     const yearEl = document.getElementById('y');
     yearEl.textContent = new Date().getFullYear();
+
+    let current = 1;
+
+    function showStep(n) {
+      steps.forEach(s => s.classList.add('hidden'));
+      const target = steps.find(s => Number(s.dataset.step) === n);
+      if (target) target.classList.remove('hidden');
+      Array.from(pills).forEach((p, i) => p.classList.toggle('active', i === n-1));
+      backBtn.style.display = n === 1 ? 'none' : 'inline-flex';
+      nextBtn.classList.toggle('hidden', n === steps.length);
+      submitBtn.classList.toggle('hidden', n !== steps.length);
+      errorEl.textContent = '';
+      statusEl.textContent = '';
+      if (n === steps.length) buildReview();
+    }
+    function buildReview() {
+      const data = Object.fromEntries(new FormData(form).entries());
+      const keys = [
+        'Name','Phone','Email','PreferredContact','VehicleType','MakeModel','YearRange','MustHaves',
+        'PaymentPlan','Budget','DownPayment','TradeIn','Credit','Employment','MonthlyIncome',
+        'PurchaseTimeline','Location','Message'
+      ];
+      const lines = keys.map(k => {
+        const val = data[k] || '';
+        return `<div><strong>${k}:</strong> ${val ? val : '<em>—</em>'}</div>`;
+      }).join('');
+      document.getElementById('reviewBox').innerHTML = lines;
+    }
+    function validateStep(n) {
+      const reqMap = {
+        1: ['Name','Phone','Email'],
+        2: ['VehicleType'],
+        3: ['PaymentPlan','Budget'],
+        4: ['Credit','Employment'],
+        5: ['PurchaseTimeline','Location'],
+        6: ['consent']
+      };
+      const fields = reqMap[n] || [];
+      for (const id of fields) {
+        const el = document.getElementById(id) || form.querySelector(`[name="${id}"]`);
+        if (!el) continue;
+        if (el.type === 'checkbox' && !el.checked) return `Please check consent to continue.`;
+        if (!el.value) return `Please complete required field: ${id}`;
+      }
+      return '';
+    }
+
+    backBtn.addEventListener('click', () => { current = Math.max(1, current-1); showStep(current); });
+    nextBtn.addEventListener('click', () => {
+      const err = validateStep(current);
+      if (err) { errorEl.textContent = err; return; }
+      current = Math.min(steps.length, current+1);
+      showStep(current);
+    });
+
+    // Submit
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      statusEl.textContent = '';
-      if (!form.Name.value || !form.Phone.value || !form.Email.value || !document.getElementById('consent').checked){
-        statusEl.textContent = 'Please complete required fields and consent.';
-        return;
-      }
+      const err = validateStep(6);
+      if (err) { errorEl.textContent = err; return; }
+
       const payload = Object.fromEntries(new FormData(form).entries());
+      statusEl.textContent = 'Submitting…';
+      errorEl.textContent = '';
+
       try {
         const res = await fetch(WEB_APP_URL + '?origin=' + encodeURIComponent(location.origin), {
-          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
         });
-        const json = await res.json();
-        if (json.ok){
+
+        // Some Apps Script deployments return HTML on auth errors.
+        const text = await res.text();
+        let json = null;
+        try { json = JSON.parse(text); } catch(_) { /* not JSON */ }
+
+        if (json && json.ok) {
           statusEl.textContent = '✅ Thanks! We received your info. We will contact you shortly.';
           form.reset();
-          document.getElementById('consent').checked = false;
+          current = 1; showStep(current);
         } else {
-          statusEl.textContent = '⚠️ Submission error. Please try again.';
+          statusEl.textContent = '';
+          errorEl.textContent = 'Submission error. If this keeps happening, see the “Network error” fixes below.';
+          console.error('Response:', text);
         }
-      } catch (err){
-        statusEl.textContent = '⚠️ Network error. Please try again.';
+      } catch (err) {
+        statusEl.textContent = '';
+        errorEl.textContent = 'Network error. Please check your connection or try again.';
+        console.error(err);
       }
     });
+
+    // Init
+    showStep(current);
   </script>
+
+  <!-- Troubleshooting tips for you (not displayed to users) -->
+  <!--
+    If you see a Network/Submission error:
+    1) In Apps Script: Deploy > Manage deployments > Web app > Access = Anyone (or Anyone with the link).
+    2) Add a doOptions(e) handler in Apps Script to reply to CORS preflight (see code I’ll provide in chat).
+    3) In CONFIG.allowedOrigins, include '*' for testing or your live origin (https://*.netlify.app or https://*.github.io).
+    4) After edits, RE-DEPLOY the Web App (don’t just save). Then update the URL here if it changed.
+  -->
 </body>
 </html>
