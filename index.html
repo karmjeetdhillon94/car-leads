@@ -71,8 +71,8 @@
       text-decoration:none; text-align:center}
     .btn.outline{background:transparent; border:1px solid var(--line)}
     .note{font-size:12px; color:#cbd5e1}
-    .ok{color:var(--ok); font-weight:700}
-    .error{color:var(--err); font-size:13px; margin-top:6px}
+    .ok{color:#22c55e; font-weight:700}
+    .error{color:#ef4444; font-size:13px; margin-top:6px}
 
     /* Gallery / Trust */
     .gallery{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:8px}
@@ -90,10 +90,21 @@
       box-shadow:0 10px 24px rgba(0,0,0,.35)}
     .fab.wa{background:linear-gradient(90deg, #22c55e, #16a34a)}
     .fab.call{background:linear-gradient(90deg, #f59e0b, #d97706)}
+
+    /* Thank You View */
+    .ty-hero{
+      min-height:70vh; display:grid; place-items:center; text-align:center; padding:64px 20px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.35), rgba(11,16,32,0.92)),
+        url('https://images.unsplash.com/photo-1515922071755-9e2a5a6bb948?q=80&w=2000&auto=format&fit=crop');
+      background-size:cover; background-position:center;
+      border-bottom:1px solid var(--line);
+    }
+    .ty-card{max-width:720px; margin:24px auto; background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.06)); padding:24px; border-radius:18px; border:1px solid var(--line)}
   </style>
 </head>
 <body>
-  <header class="hero">
+  <header class="hero" id="topHero">
     <div class="wrap">
       <div class="brand-badge">🚗 D R E A M  C A R  A C C E S S</div>
       <h1>Keys in Days — <span style="color:#7dd3fc">Fast, Friendly</span> Approvals</h1>
@@ -106,7 +117,7 @@
     </div>
   </header>
 
-  <main class="wrap" style="padding: 0 0 46px">
+  <main class="wrap" style="padding: 0 0 46px" id="formSection">
     <section class="grid">
       <!-- Wizard Form -->
       <div class="card">
@@ -296,7 +307,7 @@
             <button type="button" class="btn" id="nextBtn">Next</button>
             <button type="submit" class="btn hidden" id="submitBtn">Submit</button>
 
-            <a class="btn" style="background:linear-gradient(90deg, #22c55e, #16a34a)" href="https://wa.me/16043468148?text=Hi%20Dream%20Car%20Access%2C%20I%27m%20interested%20in%20a%20car." target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn" style="background:linear-gradient(90deg, #22c55e, #16a34a)" href="https://wa.me/16043468148?text=Hi%20Dream%20Car%20Access%2C%20I%27m%20interested%20in%20a%20car%20and%20just%20filled%20the%20form." target="_blank" rel="noopener">WhatsApp</a>
             <a class="btn" style="background:linear-gradient(90deg, #f59e0b, #d97706)" href="tel:+16043468148">Call 604‑346‑8148</a>
           </div>
         </form>
@@ -320,6 +331,26 @@
     </section>
   </main>
 
+  <!-- THANK YOU VIEW (hidden by default) -->
+  <section id="thankYou" class="hidden">
+    <div class="ty-hero">
+      <div class="wrap">
+        <div class="brand-badge">🎉 T H A N K   Y O U</div>
+        <h1>We received your application!</h1>
+        <p class="lead">A specialist from <strong>Dream Car Access</strong> will contact you shortly to confirm details and show you matching vehicles.</p>
+        <div class="ty-card">
+          <p style="margin-top:0">Want to speed things up?</p>
+          <p style="margin:8px 0 14px">
+            <a class="btn" style="background:linear-gradient(90deg, #22c55e, #16a34a)" href="https://wa.me/16043468148?text=Hi%20Dream%20Car%20Access%2C%20I%27m%20interested%20in%20a%20car%20and%20just%20filled%20the%20form." target="_blank" rel="noopener">Message us on WhatsApp</a>
+            <a class="btn" style="background:linear-gradient(90deg, #f59e0b, #d97706)" href="tel:+16043468148">Call 604‑346‑8148</a>
+          </p>
+          <p class="note">We also saved your details. Expect a fast response.</p>
+          <p class="note">Tip: reply with your <em>must‑have features</em> to help us nail the match.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="wrap">
       <p class="small">© <span id="y"></span> Dream Car Access. Privacy‑first lead handling.</p>
@@ -327,12 +358,12 @@
   </footer>
 
   <div class="float-contact">
-    <a class="fab wa" href="https://wa.me/16043468148?text=Hi%20Dream%20Car%20Access%2C%20I%27m%20interested%20in%20a%20car." target="_blank" rel="noopener">💬 WhatsApp</a>
+    <a class="fab wa" href="https://wa.me/16043468148?text=Hi%20Dream%20Car%20Access%2C%20I%27m%20interested%20in%20a%20car%20and%20just%20filled%20the%20form." target="_blank" rel="noopener">💬 WhatsApp</a>
     <a class="fab call" href="tel:+16043468148">📞 Call 604‑346‑8148</a>
   </div>
 
   <script>
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycby1t8C9nC0OhWt-GPJXuXYdl_rcYTRgdOD7NCD8Ia_KPhjcdhvPwGHNv5TGzRG1S2FFhA/exec";
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwDIeBpjSu4XFlMJSi_1VmJoCyluNQC5CC8t7E8JiBgdah7ETLw33t87vx_VPnW5eWkmA/exec";
     const form = document.getElementById('leadForm');
     const pills = document.getElementById('stepPills').children;
     const steps = Array.from(document.querySelectorAll('.step'));
@@ -342,6 +373,9 @@
     const statusEl = document.getElementById('status');
     const errorEl = document.getElementById('formError');
     const yearEl = document.getElementById('y');
+    const formSection = document.getElementById('formSection');
+    const topHero = document.getElementById('topHero');
+    const thankYou = document.getElementById('thankYou');
     yearEl.textContent = new Date().getFullYear();
 
     let current = 1;
@@ -357,6 +391,7 @@
       errorEl.textContent = '';
       statusEl.textContent = '';
       if (n === steps.length) buildReview();
+      window.scrollTo({top:0, behavior:'smooth'});
     }
     function buildReview() {
       const data = Object.fromEntries(new FormData(form).entries());
@@ -366,7 +401,7 @@
         'PurchaseTimeline','Location','Message'
       ];
       const lines = keys.map(k => {
-        const val = data[k] || '';
+        const val = (data[k] || '').toString().replace(/</g,'&lt;').replace(/>/g,'&gt;');
         return `<div><strong>${k}:</strong> ${val ? val : '<em>—</em>'}</div>`;
       }).join('');
       document.getElementById('reviewBox').innerHTML = lines;
@@ -398,7 +433,6 @@
       showStep(current);
     });
 
-    // Submit
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const err = validateStep(6);
@@ -415,19 +449,24 @@
           body: JSON.stringify(payload),
         });
 
-        // Some Apps Script deployments return HTML on auth errors.
-        const text = await res.text();
+        const txt = await res.text();
         let json = null;
-        try { json = JSON.parse(text); } catch(_) { /* not JSON */ }
+        try { json = JSON.parse(txt); } catch(_){
+          // Not JSON (auth or error HTML). Treat as failure.
+        }
 
         if (json && json.ok) {
-          statusEl.textContent = '✅ Thanks! We received your info. We will contact you shortly.';
           form.reset();
-          current = 1; showStep(current);
+          const consentEl = document.getElementById('consent');
+          if (consentEl) consentEl.checked = false;
+          document.getElementById('topHero').classList.add('hidden');
+          document.getElementById('formSection').classList.add('hidden');
+          document.getElementById('thankYou').classList.remove('hidden');
+          window.scrollTo({top:0, behavior:'smooth'});
         } else {
           statusEl.textContent = '';
-          errorEl.textContent = 'Submission error. If this keeps happening, see the “Network error” fixes below.';
-          console.error('Response:', text);
+          errorEl.textContent = 'Submission error. Please try again or contact us via WhatsApp/Call below.';
+          console.error('Response text:', txt);
         }
       } catch (err) {
         statusEl.textContent = '';
@@ -439,14 +478,5 @@
     // Init
     showStep(current);
   </script>
-
-  <!-- Troubleshooting tips for you (not displayed to users) -->
-  <!--
-    If you see a Network/Submission error:
-    1) In Apps Script: Deploy > Manage deployments > Web app > Access = Anyone (or Anyone with the link).
-    2) Add a doOptions(e) handler in Apps Script to reply to CORS preflight (see code I’ll provide in chat).
-    3) In CONFIG.allowedOrigins, include '*' for testing or your live origin (https://*.netlify.app or https://*.github.io).
-    4) After edits, RE-DEPLOY the Web App (don’t just save). Then update the URL here if it changed.
-  -->
 </body>
 </html>
